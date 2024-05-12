@@ -1,6 +1,16 @@
 let submitButton = document.querySelector(".submit-button");
 let foodEntry = document.getElementById("foodEntry");
 let display = document.querySelector(".display");
+let totalCal = document.querySelector("#total-cals");
+let totalPro = document.querySelector("#total-pros");
+let totalCarb = document.querySelector("#total-carbs");
+let totalSug = document.querySelector("#total-sugars");
+let totals = {
+  calTotals: 0,
+  proTotals: 0,
+  carbTotals: 0,
+  sugTotals: 0,
+};
 
 submitButton.addEventListener("click", function() {
   let responseData;
@@ -27,15 +37,19 @@ submitButton.addEventListener("click", function() {
 
       const foodCal = document.createElement("p");
       foodCal.textContent = "Calories: " + responseData.items[0].calories;
+      totals.calTotals += responseData.items[0].calories;
 
       const foodPro = document.createElement("p");
       foodPro.textContent = "Protein: " + responseData.items[0].protein_g + " grams";
+      totals.proTotals += responseData.items[0].protein_g;
 
       const foodCarb = document.createElement("p");
       foodCarb.textContent = "Total Carbs: " + responseData.items[0].carbohydrates_total_g + " grams";
+      totals.carbTotals += responseData.items[0].carbohydrates_total_g;
 
       const foodSugar = document.createElement("p");
       foodSugar.textContent = "Total Sugar: " + responseData.items[0].sugar_g + " grams";
+      totals.sugTotals += responseData.items[0].sugar_g;
 
       display.appendChild(foodName);
       display.appendChild(foodCal);
@@ -45,4 +59,7 @@ submitButton.addEventListener("click", function() {
 
     })
     .catch((error) => console.error('Error:', error));
+
+  totalCal.textContent = "Total Calories: " + totals.calTotals;
+
 });
