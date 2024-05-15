@@ -1,16 +1,16 @@
-let submitButton = document.querySelector(".submit-button");
+let submitButton = document.querySelector("#submit-button");
+let clearButton = document.querySelector("#clear-button");
 let foodEntry = document.getElementById("foodEntry");
 let display = document.querySelector(".display");
 let totalCal = document.querySelector("#total-cals");
 let totalPro = document.querySelector("#total-pros");
 let totalCarb = document.querySelector("#total-carbs");
 let totalSug = document.querySelector("#total-sugars");
-let totals = {
-  calTotals: 0,
-  proTotals: 0,
-  carbTotals: 0,
-  sugTotals: 0,
-};
+
+localStorage.setItem("calTotals", 0);
+localStorage.setItem("proTotals", 0);
+localStorage.setItem("carbTotals", 0);
+localStorage.setItem("sugTotals", 0);
 
 submitButton.addEventListener("click", function() {
   let responseData;
@@ -37,19 +37,23 @@ submitButton.addEventListener("click", function() {
 
       const foodCal = document.createElement("p");
       foodCal.textContent = "Calories: " + responseData.items[0].calories;
-      totals.calTotals += responseData.items[0].calories;
+      localStorage.setItem("calTotals", parseInt(localStorage.getItem("calTotals")) + responseData.items[0].calories);
+      totalCal.textContent = "Total Calories: " + localStorage.getItem("calTotals");
 
       const foodPro = document.createElement("p");
       foodPro.textContent = "Protein: " + responseData.items[0].protein_g + " grams";
-      totals.proTotals += responseData.items[0].protein_g;
+      localStorage.setItem("proTotals", parseInt(localStorage.getItem("proTotals")) + responseData.items[0].protein_g);
+      totalPro.textContent = "Total Protein: " + localStorage.getItem("proTotals");
 
       const foodCarb = document.createElement("p");
-      foodCarb.textContent = "Total Carbs: " + responseData.items[0].carbohydrates_total_g + " grams";
-      totals.carbTotals += responseData.items[0].carbohydrates_total_g;
+      foodCarb.textContent = "Total Carbohydrates: " + responseData.items[0].carbohydrates_total_g + " grams";
+      localStorage.setItem("carbTotals", parseInt(localStorage.getItem("carbTotals")) + responseData.items[0].carbohydrates_total_g);
+      totalCarb.textContent = "Total Carbohydrates: " + localStorage.getItem("carbTotals");
 
       const foodSugar = document.createElement("p");
       foodSugar.textContent = "Total Sugar: " + responseData.items[0].sugar_g + " grams";
-      totals.sugTotals += responseData.items[0].sugar_g;
+      localStorage.setItem("sugTotals", parseInt(localStorage.getItem("sugTotals")) + responseData.items[0].sugar_g);
+      totalSug.textContent = "Total Sugar: " + localStorage.getItem("sugTotals");
 
       display.appendChild(foodName);
       display.appendChild(foodCal);
@@ -60,6 +64,10 @@ submitButton.addEventListener("click", function() {
     })
     .catch((error) => console.error('Error:', error));
 
-  totalCal.textContent = "Total Calories: " + totals.calTotals;
+
+});
+
+clearButton.addEventListener("click", function() {
+  localStorage.clear();
 
 });
