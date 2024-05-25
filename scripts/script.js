@@ -69,5 +69,11 @@ submitButton.addEventListener("click", function() {
 
 clearButton.addEventListener("click", function() {
   localStorage.clear();
-
+  while (display.firstChild) {
+    display.removeChild(display.firstChild);
+  }
+  totalCal.textContent = "Total Calories 0"
+  totalPro.textContent = "Total Protein: 0 grams"
+  totalCarb.textContent = "Total Carbs: 0 grams"
+  totalSug.textContent = "Total Sugar: 0 grams"
 });

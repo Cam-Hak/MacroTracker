@@ -5,21 +5,24 @@
 <head>
   <meta charset="utf-8">
   <title>MacroTracker</title>
+  <link rel="stylesheet" href="styles/home.css">
 </head>
 <header>
-  <h1>Macro Tracker</h1>
+  <h1 class="page-title">Macro Tracker</h1>
 </header>
 
 <body>
   <main>
-    <input type="text" id="foodEntry" placeholder="Enter food item here">
-    <input id="submit-button" type="submit" value="Submit">
-    <button id="clear-button">Clear</button>
+    <form>
+      <input type="text" id="foodEntry" placeholder="Enter food item here">
+      <input id="submit-button" type="submit" value="Submit">
+      <button id="clear-button">Clear</button>
+    </form>
     <div class="Totals">
       <p id="total-cals">Total Calories: 0</p>
       <p id="total-pros">Total Protein: 0 grams</p>
       <p id="total-carbs">Total Carbs: 0 grams</p>
-      <p id="total-sugars">Total Sugars: 0 grams</p>
+      <p id="total-sugars">Total Sugar: 0 grams</p>
     </div>
     <section class="display">
     </section>

@@ -1,0 +1,19 @@
+
+header {
+    border-style: solid;
+    text-align: center;
+}
+
+body {
+    border-style: solid;
+    border-color: red;
+}
+
+form {
+    text-align: center;
+}
+
+display {
+    display: flex;
+    flex-direction: row;
+}
